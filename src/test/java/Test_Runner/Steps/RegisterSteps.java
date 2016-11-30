@@ -1,9 +1,8 @@
-package Test_Runner;
+package Test_Runner.Steps;
 
-import NopecommerceProject.DriverManager;
+import NopecommerceProject.Utilities.DriverManager;
+import NopecommerceProject.Utilities.LoadProperties;
 import NopecommerceProject.Page.Registrationpage;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,13 +11,13 @@ import org.testng.Assert;
 /**
  * Created by kaival on 30/11/2016.
  */
-public class StepDef extends DriverManager {
+public class RegisterSteps extends DriverManager {
 
 
 
 @Given("^I open browser and goto Nopecommerce website$")
 public void i_open_browser_and_goto_Nopecommerce_website() throws Throwable {
-    DriverManager.openBrowser("chrome");
+    DriverManager.openBrowser(LoadProperties.getProperty("Browser"));
 
 }
 
@@ -49,6 +48,7 @@ public void i_open_browser_and_goto_Nopecommerce_website() throws Throwable {
         Registrationpage registration = new Registrationpage();
         Assert.assertTrue(registration.registrationSuccessfulMessage(),"Your registration completed");
         registration.logout();
+        DriverManager.closeBrowser();
 
     }
 }

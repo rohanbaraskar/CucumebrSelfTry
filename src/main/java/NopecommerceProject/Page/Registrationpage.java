@@ -1,9 +1,8 @@
 package NopecommerceProject.Page;
 
-import NopecommerceProject.DriverManager;
-import NopecommerceProject.Utils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import NopecommerceProject.Utilities.DriverManager;
+import NopecommerceProject.Utilities.LoadProperties;
+import NopecommerceProject.Utilities.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -60,9 +59,10 @@ public class Registrationpage extends DriverManager {
     @FindBy(className = "ico-logout")
     private WebElement _logout;
 
+
+    String Password=LoadProperties.getProperty("Password");
     public static String actext=null;
-
-
+    public static String email = LoadProperties.getProperty("UserName") + Utils.randomdate() + "@gmail.com";
 
     public String homepage() {
         Utils.driverWaitExplicitly(_homepagetext, 5);
@@ -78,7 +78,7 @@ public class Registrationpage extends DriverManager {
 
         return Utils.get_Text(_RegisterText);
     }
-    public static String email = "laxmi" + Utils.randomdate() + "@gmail.com";
+
 
 
     public void register() {
@@ -90,8 +90,8 @@ public class Registrationpage extends DriverManager {
         Utils.selectElementByVisibletext(_MOB, "June");
         Utils.selectElementByValue(_YOB, "2000");
         Utils.enterText(_email, email);
-        Utils.enterText(_password, "laxmi2600");
-        Utils.enterText(_ConfirmPassword, "laxmi2600");
+        Utils.enterText(_password, Password);
+        Utils.enterText(_ConfirmPassword, Password);
         //clickOnRegisterBtn(_registerbtn);
 //        actext = new String();
 //        actext =   Utils.get_Text(_ACText);

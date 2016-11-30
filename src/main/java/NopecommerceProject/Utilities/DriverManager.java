@@ -1,7 +1,6 @@
-package NopecommerceProject;
+package NopecommerceProject.Utilities;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -20,7 +19,7 @@ public class DriverManager {
     public static void openBrowser (String browserName) throws Exception {
         BrowserFactory browserFactory =new BrowserFactory();
         browserFactory.GetBrowser(browserName);
-        driver.get("http://demo.nopcommerce.com/");
+        driver.get(LoadProperties.getProperty("URL"));
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }

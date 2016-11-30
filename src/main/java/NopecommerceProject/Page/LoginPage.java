@@ -1,8 +1,8 @@
 package NopecommerceProject.Page;
 
-import NopecommerceProject.DriverManager;
-import NopecommerceProject.Utils;
-import org.openqa.jetty.util.Password;
+import NopecommerceProject.Utilities.DriverManager;
+import NopecommerceProject.Utilities.LoadProperties;
+import NopecommerceProject.Utilities.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,6 +29,8 @@ public class LoginPage extends DriverManager {
     @FindBy (xpath = "//a[@class='ico-account']")
     private WebElement _getLoginAccount;
 
+    String Password= LoadProperties.getProperty("Password");
+
     public String getpageTitle (){
        return Utils.get_Text(_getPageTitle);
     }
@@ -39,10 +41,13 @@ public class LoginPage extends DriverManager {
     }
 
     public void EnterLoginDetails() {
-       // Registrationpage registration = new Registrationpage();
-      //  String acText = registration.actext;
-       // Utils.enterText(_Enteremail,acText);
-        Utils.enterText(_EnterPassword,"laxmi2600");
+        Registrationpage registration = new Registrationpage();
+        String acText = registration.actext;
+        Utils.enterText(_Enteremail,acText);
+        Utils.enterText(_EnterPassword,Password);
+    }
+
+    public void clickOnLoginBtn() {
         Utils.clickOnElement(_Submitbtn);
     }
 
