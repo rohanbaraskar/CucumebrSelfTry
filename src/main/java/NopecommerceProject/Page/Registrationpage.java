@@ -64,7 +64,7 @@ public class Registrationpage extends DriverManager {
 
     String Password=LoadProperties.getProperty("Password");
     public static String actext=null;
-    public static String email = LoadProperties.getProperty("UserName") + Utils.randomdate() + new Random().nextInt()+"@gmail.com";
+    public  String email = LoadProperties.getProperty("UserName") + Utils.randomdate() + new Random().nextInt()+"@gmail.com";
 
     public String homepage() {
         Utils.driverWaitExplicitly(_homepagetext, 5);
