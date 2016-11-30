@@ -6,6 +6,8 @@ import NopecommerceProject.Utilities.Utils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Random;
+
 /**
  * Created by welcome on 22/11/2016.
  */
@@ -62,7 +64,7 @@ public class Registrationpage extends DriverManager {
 
     String Password=LoadProperties.getProperty("Password");
     public static String actext=null;
-    public static String email = LoadProperties.getProperty("UserName") + Utils.randomdate() + "@gmail.com";
+    public static String email = LoadProperties.getProperty("UserName") + Utils.randomdate() + new Random().nextInt()+"@gmail.com";
 
     public String homepage() {
         Utils.driverWaitExplicitly(_homepagetext, 5);
