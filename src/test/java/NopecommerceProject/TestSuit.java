@@ -66,7 +66,7 @@ public class TestSuit extends DriverManager {
     }
 
     @Test
-    public static void itemsinCart (){
+    public static void itemsinCart () throws InterruptedException {
         Registrationpage registration =new Registrationpage();
         registration.clickonregistrationlink();
         registration.register();
@@ -75,12 +75,13 @@ public class TestSuit extends DriverManager {
         electronicsPage.addtocart();
         electronicsPage.goToCart();
         electronicsPage.cart_SubTotal();
+        registration.logout();
 
 
     }
 
     @Test
-    public static void payment (){
+    public static void payment () throws InterruptedException {
         Registrationpage registration =new Registrationpage();
         registration.clickonregistrationlink();
         registration.register();
@@ -94,6 +95,7 @@ public class TestSuit extends DriverManager {
        // paymentPage.getconfirmationmessage();
        // System.out.println(paymentPage.getconfirmationmessage());
         Assert.assertEquals(paymentPage.getconfirmationmessage(),"Your order has been successfully processed!");
+        registration.logout();
     }
 
 

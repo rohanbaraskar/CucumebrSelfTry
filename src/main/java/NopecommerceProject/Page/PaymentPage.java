@@ -73,9 +73,10 @@ public class PaymentPage extends DriverManager {
     @FindBy (xpath = "//div[@class='center-1']/div/div[2]/div/div/strong")
     private WebElement _confirmationmessage;
 
-    public void checkout (){
+    public void checkout () throws InterruptedException {
         Utils.clickOnElement(_termsofService);
         Utils.clickOnElement(_checkbtn);
+        Thread.sleep(1500);
         Assert.assertEquals(Utils.get_Text(_checktext),"Checkout");
         Utils.selectElementByValue(_country,"82");
         Utils.enterText(_city,"Wembley");
@@ -83,7 +84,9 @@ public class PaymentPage extends DriverManager {
         Utils.enterText(_zipcode,"HA8 9OF");
         Utils.enterText(_phone,"07654329887");
         Utils.clickOnElement(_continuebtn);
+        Thread.sleep(1000);
         Utils.clickOnElement(_continuebtnshipping);
+        Thread.sleep(1000);
         Utils.clickOnElement(_creditcard);
         Utils.clickOnElement(_continuecreditcard);
         Utils.selectElementByValue(_creditcardtype,"MasterCard");
@@ -93,6 +96,7 @@ public class PaymentPage extends DriverManager {
         Utils.selectElementByValue(_expyear,"2017");
         Utils.enterText(_cardcode,"476");
         Utils.clickOnElement(_continuepayment);
+        Thread.sleep(1000);
         Utils.clickOnElement(_confirmbtn);
 
     }

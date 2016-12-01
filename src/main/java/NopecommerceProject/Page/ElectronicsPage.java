@@ -2,8 +2,11 @@ package NopecommerceProject.Page;
 
 import NopecommerceProject.Utilities.DriverManager;
 import NopecommerceProject.Utilities.Utils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 /**
@@ -14,7 +17,7 @@ public class ElectronicsPage extends DriverManager {
     @FindBy (linkText = "Electronics")
     private WebElement _electronics;
 
-    @FindBy (xpath = "//a[@href='/camera-photo']")
+    @FindBy (xpath = "//ul[@class='sublist']/li/a")
     private WebElement _camera;
 
     @FindBy (xpath = "//a[text()='Apple iCam']")
@@ -78,10 +81,9 @@ public class ElectronicsPage extends DriverManager {
     @FindBy (xpath = "//tr/td[2]/span")
     private WebElement _subtotal;
 
-    public void addtocart (){
+    public void addtocart () throws InterruptedException {
 
-        Utils.mousehover(_electronics);
-        Utils.mousehover(_camera);
+        Utils.clickOnElement(_electronics);
         Utils.clickOnElement(_camera);
         Utils.clickOnElement(_nikon);
         Utils.enterText(_nikonred,"1");
@@ -89,6 +91,7 @@ public class ElectronicsPage extends DriverManager {
         Assert.assertEquals(Utils.get_Text(_confirmationmessagewindowofitemaddition),"The product has been added to your shopping cart");
         Utils.clickOnElement(_closeconfirmation);
         Utils.clickalert();
+        Thread.sleep(1500);
         Utils.clickOnElement(_backtocamera);
         Utils.clickOnElement(_appleicam);
         Utils.enterText(_quantityicam,"6");
@@ -96,6 +99,7 @@ public class ElectronicsPage extends DriverManager {
         Assert.assertEquals(Utils.get_Text(_confirmationmessagewindowofitemaddition),"The product has been added to your shopping cart");
         Utils.clickOnElement(_closeconfirmation);
         Utils.clickalert();
+        Thread.sleep(1500);
         Utils.clickOnElement(_backtocamera);
         Utils.clickOnElement(_DGcam);
         Utils.enterText(_quantityDGcam,"1");
@@ -105,7 +109,8 @@ public class ElectronicsPage extends DriverManager {
         Utils.clickalert();
 
     }
-    public void goToCart (){
+    public void goToCart () throws InterruptedException {
+        Thread.sleep(1500);
         Utils.clickOnElement(_shoppingbasket);
         Assert.assertEquals(Utils.get_Text(_textshoppingcart),"Shopping cart");
         Utils.clickOnElement(_removeNikon);             // Checking if item reove function works
@@ -113,10 +118,11 @@ public class ElectronicsPage extends DriverManager {
         Utils.clickOnElement(_updatecartbtn);
 
     }
-    public  void cart_SubTotal (){
+    public  void cart_SubTotal () throws InterruptedException {
         float subtotal =Utils.cartSubTotal(_totalOfItem1)+ Utils.cartSubTotal(_totalOfItem2);
       //  System.out.println(subtotal);
         float actualtotal = Utils.cartSubTotal(_subtotal);   // This checks if the total of added items is correct or not before delivery charges.
+        Thread.sleep(1000);
         Assert.assertEquals(actualtotal,subtotal);
         System.out.println("Total of two items added is correct."+"\n" +
                 "(Item 1) "+Utils.cartSubTotal(_totalOfItem1)+" + (Item 2)"+ Utils.cartSubTotal(_totalOfItem2)+" ="+actualtotal);
