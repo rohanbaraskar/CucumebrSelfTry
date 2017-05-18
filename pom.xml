@@ -76,11 +76,11 @@
       <version>1.2.4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-jvm -->
-    <dependency>
-      <groupId>info.cukes</groupId>
-      <artifactId>cucumber-jvm</artifactId>
-      <version>1.2.4</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>info.cukes</groupId>-->
+      <!--<artifactId>cucumber-jvm</artifactId>-->
+      <!--<version>1.2.4</version>-->
+    <!--</dependency>-->
 
 
   </dependencies>
