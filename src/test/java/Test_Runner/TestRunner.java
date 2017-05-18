@@ -11,12 +11,12 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(  monochrome = true,
-        tags = "@kavya",
+
         features = "src/test/resources/features",
         format = { "pretty","html: cucumber-html-reports",
                 "json: cucumber-html-reports/cucumber.json" },
         dryRun = false,
-        glue = "Test_Runner/Steps" )
+        glue = "Test_Runner/Steps")
 
 
 public class TestRunner {
