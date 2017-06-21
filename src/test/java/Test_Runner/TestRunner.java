@@ -1,14 +1,15 @@
 package Test_Runner;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;
+
+import cucumber.api.testng.AbstractTestNGCucumberTests;
+
 
 /**
  * Created by kaival on 29/11/2016.
  */
 
-@RunWith(Cucumber.class)
+
 
 @CucumberOptions(  monochrome = true,
 
@@ -19,5 +20,6 @@ import org.junit.runner.RunWith;
         glue = "Test_Runner/Steps")
 
 
-public class TestRunner {
+public class TestRunner extends AbstractTestNGCucumberTests{
+	
 }

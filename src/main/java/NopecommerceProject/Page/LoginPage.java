@@ -3,6 +3,8 @@ package NopecommerceProject.Page;
 import NopecommerceProject.Utilities.DriverManager;
 import NopecommerceProject.Utilities.LoadProperties;
 import NopecommerceProject.Utilities.Utils;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,6 +13,8 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LoginPage extends DriverManager {
 
+	static Logger log = Logger.getLogger(LoginPage.class.getName());
+	
     @FindBy (className = "ico-login")
     private WebElement _Loginbtn;
 
@@ -32,17 +36,22 @@ public class LoginPage extends DriverManager {
     String Password= LoadProperties.getProperty("Password");
 
     public String getpageTitle (){
+    	log.info("inside get page title method");
        return Utils.get_Text(_getPageTitle);
     }
 
     public  void login_nopecommerce (){
-
+    	log.info("clicking on login button");
         Utils.clickOnElement(_Loginbtn);
     }
 
     public void EnterLoginDetails() {
         Registrationpage registration = new Registrationpage();
+        log.info("Entering login details");
+        
         String acText = registration.actext;
+        log.info("username is"+acText);
+        log.info("password is"+Password);
         Utils.enterText(_Enteremail,acText);
         Utils.enterText(_EnterPassword,Password);
     }

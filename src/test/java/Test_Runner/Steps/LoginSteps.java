@@ -2,24 +2,43 @@ package Test_Runner.Steps;
 
 import NopecommerceProject.Utilities.DriverManager;
 import NopecommerceProject.Utilities.LoadProperties;
+import NopecommerceProject.TestSuite;
 import NopecommerceProject.Page.LoginPage;
 import NopecommerceProject.Page.Registrationpage;
 import NopecommerceProject.Utilities.Utils;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 /**
  * Created by kaival on 30/11/2016.
  */
 public class LoginSteps extends DriverManager{
+	
+	static Logger log = Logger.getLogger(LoginSteps.class);
+	
 
-
+	@BeforeTest
+	public void setup() throws Exception{
+		DriverManager.openBrowser(LoadProperties.getProperty("Browser"));
+		BasicConfigurator.configure();
+	}
+	
+	@AfterTest
+	public void teardown(){
+		DriverManager.closeBrowser();
+		
+	}
 
     @Given("^user open browser and goto Nopecommerce website$")
     public void user_open_browser_and_goto_Nopecommerce_website() throws Throwable {
-        DriverManager.openBrowser(LoadProperties.getProperty("Browser"));
+        
         Registrationpage registrationpage=new Registrationpage();
         registrationpage.clickonregistrationlink();
         registrationpage.register();
@@ -52,7 +71,7 @@ public class LoginSteps extends DriverManager{
         Utils.webDriverWaitImplicitly(5);
         Assert.assertEquals(loginPage.getLoginAccountInfo(),registration.actext,"\n User Successfully Logged in");
         registration.logout();
-        DriverManager.closeBrowser();
+        
 
     }
 }

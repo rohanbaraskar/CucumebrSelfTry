@@ -11,16 +11,17 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 public class BrowserFactory extends DriverManager{
     public static WebDriver GetBrowser(String browserName)throws Exception {
         if(browserName.equalsIgnoreCase("firefox")){
+        	 System.setProperty("webdriver.gecko.driver","C:\\geckodriver.exe");
             driver = new FirefoxDriver();
         }
 
         else if(browserName.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver","C:\\Users\\kaival\\Downloads\\Week 21Nov Binni's Homework\\Week 21Nov Binni's Homework\\Nopecommerce_Project_PageFactory\\src\\test\\resources\\BrowserDrivers\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
             driver = new ChromeDriver();
         }
 
         else if(browserName.equalsIgnoreCase("ie")){
-            System.setProperty("webdriver.ie.driver","C:\\Users\\kaival\\Downloads\\Week 21Nov Binni's Homework\\Week 21Nov Binni's Homework\\Nopecommerce_Project_PageFactory\\src\\test\\resources\\BrowserDrivers\\IEDriverServer.exe");
+            System.setProperty("webdriver.ie.driver","C:\\IEDriverServer.exe");
             driver = new InternetExplorerDriver();
         }
 

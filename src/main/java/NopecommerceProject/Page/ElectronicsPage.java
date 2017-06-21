@@ -1,19 +1,28 @@
 package NopecommerceProject.Page;
 
+import NopecommerceProject.TestSuite;
 import NopecommerceProject.Utilities.DriverManager;
 import NopecommerceProject.Utilities.Utils;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.apache.log4j.BasicConfigurator;
+
+
 
 /**
  * Created by welcome on 22/11/2016.
  */
 public class ElectronicsPage extends DriverManager {
+	
+	static Logger log = Logger.getLogger(ElectronicsPage.class.getName());
 
+	
     @FindBy (linkText = "Electronics")
     private WebElement _electronics;
 
@@ -82,7 +91,7 @@ public class ElectronicsPage extends DriverManager {
     private WebElement _subtotal;
 
     public void addtocart () throws InterruptedException {
-
+    	
         Utils.clickOnElement(_electronics);
         Utils.clickOnElement(_camera);
         Utils.clickOnElement(_nikon);

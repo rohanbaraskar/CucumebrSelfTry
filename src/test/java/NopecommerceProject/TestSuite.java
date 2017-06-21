@@ -10,23 +10,31 @@ import NopecommerceProject.Utilities.Utils;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 /**
  * Created by welcome on 21/11/2016.
  */
 public class TestSuite extends DriverManager {
 
+	static Logger log = Logger.getLogger(TestSuite.class.getName());
 
     @Parameters({ "browser" })
     @BeforeMethod
     public static void open(String browser) throws Exception {
        // DriverManager.openBrowser(LoadProperties.getProperty("Browser"));
-        DriverManager.openBrowser(browser);
+        DriverManager.openBrowser(browser); 
+      
+        log.info("Opening browser:");
+       
     }
 
     @AfterMethod
     public static void close(){
         DriverManager.closeBrowser();
+        log.debug("closing browser");
+        log.info("Hello this is an info message");
     }
 
 
@@ -34,6 +42,7 @@ public class TestSuite extends DriverManager {
     public static void useronHomepage(){
         Registrationpage registration = new Registrationpage();
         Assert.assertEquals(registration.homepage(),"Welcome to our store");
+        
     }
 
     @Test
@@ -46,6 +55,7 @@ public class TestSuite extends DriverManager {
         registration.clickOnRegisterBtn();
         Assert.assertTrue(registration.registrationSuccessfulMessage(),"Your registration completed");
         registration.logout();
+      
     }
 
 
